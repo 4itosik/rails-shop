@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin</title>
+  <%= stylesheet_link_tag    "admin/application", :media => "all" %>
+  <%= javascript_include_tag "admin/application" %>
+  <%= yield :cred %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%if devise_controller?%>
+<header>
+	<nav class="navbar navbar-default" role="navigation">
+	  <div class="navbar-header">
+	  	<a class="navbar-brand" target="_blank" href="http://www.staiti.by">by Staiti</a>
+	  </div>
+	</nav>
+</header>
+<%else%>
+<header>
+	<nav class="navbar navbar-default" role="navigation">
+	  <div class="navbar-header">
+	    <a class="navbar-brand" target="_blank" href="http://www.staiti.by">by Staiti</a>
+	  </div>
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+        <li><%= link_to 'Главная', admin_dashboard_index_path%></li>
+	    </ul>
+	    <ul class="nav navbar-nav navbar-right">
+	    	<li><%= link_to "Sign out", destroy_administrator_session_path, :method => :delete %></li>
+	    </ul>
+	  </div>
+	</nav>
+</header>
+<%end%>
+<div class="container">
+	<div class="row">
+		<p class="notice"><%= notice %></p>
+		<p class="alert"><%= alert %></p>
+	</div>
+	<%= yield %>
+<footer>
+<hr>
+
+<center>Copyright &copy 2013 <a href="http://staiti.by" target="_blank">Разработка сайтов в Гомеле."СТАЙТИ"</a></center></div>
+
+</footer>
+</div>
+</body>
+</html>

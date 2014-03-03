@@ -1,7 +1,10 @@
 RailsShop::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
-
+  devise_for :administrators
+  devise_scope :administrators do
+    root to: "admin/dashboard#index" 
+  end
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
