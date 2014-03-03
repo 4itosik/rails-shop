@@ -5,6 +5,12 @@ RailsShop::Application.routes.draw do
   devise_scope :administrators do
     root to: "admin/dashboard#index" 
   end
+
+
+  #admin routes
+  namespace :admin do
+    resources :dashboard, only: [:index]
+  end
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
