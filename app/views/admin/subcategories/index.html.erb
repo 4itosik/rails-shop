@@ -1,0 +1,24 @@
+<div class="row">
+	<div class="col-xs-12">
+	Все подкатегории:
+	<table class="table table-bordered table-hover">
+		<tr><th>Название</th><th>Alias</th><th>Категория</th><th></th></tr>
+		<% @subcategories.each do |subcategory|%>
+		<tr>
+			<td><%= link_to subcategory.name, admin_subcategory_path(subcategory)%></td>
+			<td><%= subcategory.alias%></td>
+			<td><%= subcategory.category.name%></td>
+			<td class="col-xs-3"><%= link_to 'Просмотр', admin_subcategory_path(subcategory), :class => "btn btn-sm btn-info" %>
+			<%= link_to 'Редактировать', edit_admin_subcategory_path(subcategory), :class => "btn btn-sm btn-success"%>
+			<%= link_to 'Удалить', admin_subcategory_path(subcategory), :method=>:delete, :class=>:destroy, :class => "btn btn-sm btn-danger"%></td>
+		</tr>
+		<%end%>	
+	</table>
+	</div>
+</div>
+<div class="row">
+<center><%= will_paginate @subcategories, :class => "apple_pagination", :previous_label => t("<<Предыдущая страница"), :next_label => t("Следующая страница>>") %></center>
+</div>
+<div class="row">
+	<%= link_to 'Создать', new_admin_subcategory_path%>
+</div>

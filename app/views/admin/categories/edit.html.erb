@@ -1,0 +1,36 @@
+<div class="col-xs-12">
+Редактировать категории <%= @category.name%>:
+	<%= form_for @category, url: admin_category_path, html: { class: "form-horizontal" }   do |f|%>
+		<%= f.hidden_field :id%>
+    <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "ошибки") %> при редактировании категории:</h2>
+      <ul>
+      <% @category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Название</label>
+      <div class="col-lg-5">
+        <%= f.text_field :name, :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Алиас</label>
+      <div class="col-lg-5">
+        <%= f.text_field :alias, :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-5">  
+        <%= f.submit "Редактировать категорию #{@category.name}", :class=>"btn btn-success"  %>
+      </div>
+    </div>
+	<%end%>
+</div>
+<div class="row">
+	<%= link_to 'Назад', admin_categories_path%>
+</div>

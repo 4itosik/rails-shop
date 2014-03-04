@@ -1,0 +1,23 @@
+<div class="row">
+	<div class="col-xs-12">
+	Все категории:
+	<table class="table table-bordered table-hover">
+		<tr><th>Название</th><th>Alias</th><th></th></tr>
+		<% @categories.each do |category|%>
+		<tr>
+			<td><%= link_to category.name, admin_category_path(category)%></td>
+			<td><%= category.alias%></td>
+			<td class="col-xs-3"><%= link_to 'Просмотр', admin_category_path(category), :class => "btn btn-sm btn-info" %>
+			<%= link_to 'Редактировать', edit_admin_category_path(category), :class => "btn btn-sm btn-success"%>
+			<%= link_to 'Удалить', admin_category_path(category), :method=>:delete, :class=>:destroy, :class => "btn btn-sm btn-danger"%></td>
+		</tr>
+		<%end%>	
+	</table>
+	</div>
+</div>
+<div class="row">
+<center><%= will_paginate @categories, :class => "apple_pagination", :previous_label => t("<<Предыдущая страница"), :next_label => t("Следующая страница>>") %></center>
+</div>
+<div class="row">
+	<%= link_to 'Создать', new_admin_category_path%>
+</div>

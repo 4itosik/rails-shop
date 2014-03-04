@@ -1,0 +1,16 @@
+<div class="row">
+<% howcategory = 0%>
+<% @categories.each do |category|%>
+	<div class="col-lg-4">
+		<%= category.name%><br>
+		<%= link_to category.alias, category_path(category.alias)%>
+	</div>
+	<% howcategory += 1%>
+	<% if howcategory == 3 && @categories.last != category%>
+</div>
+<br>
+<div class="row">
+	<% howcategory = 0%>
+	<%end%>
+<%end%>
+</div>

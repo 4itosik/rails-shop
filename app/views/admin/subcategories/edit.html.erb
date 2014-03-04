@@ -1,0 +1,42 @@
+<div class="col-xs-12">
+Редактировать подкатегорию <%= @subcategory.name%>:
+	<%= form_for @subcategory, url: admin_subcategory_path, html: { class: "form-horizontal" }   do |f|%>
+		<%= f.hidden_field :id%>
+    <% if @subcategory.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@subcategory.errors.count, "ошибки") %> при редактировании категории:</h2>
+      <ul>
+      <% @subcategory.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Название</label>
+      <div class="col-lg-5">
+        <%= f.text_field :name, :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Алиас</label>
+      <div class="col-lg-5">
+        <%= f.text_field :alias, :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Категория</label>
+      <div class="col-lg-5">
+        <%= f.collection_select(:category_id, Category.all, :id, :name , options ={:prompt => ""}, :class => "form-control") %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-5">  
+        <%= f.submit "Редактировать подкатегорию #{@subcategory.name}", :class=>"btn btn-success"  %>
+      </div>
+    </div>
+	<%end%>
+</div>
+<div class="row">
+	<%= link_to 'Назад', admin_categories_path%>
+</div>

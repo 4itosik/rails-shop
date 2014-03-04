@@ -1,5 +1,6 @@
 RailsShop::Application.routes.draw do
-  root :to => 'products#index'
+  root :to => 'categories#index'
+  #----start admin routes
   devise_for :administrators
   devise_scope :administrators do
     root to: "admin/dashboard#index" 
@@ -9,9 +10,17 @@ RailsShop::Application.routes.draw do
   #admin routes
   namespace :admin do
     resources  :dashboard, only: [:index]
-    resources  :products
+    resources  :categories, :subcategories, :products
   end
 
-  #products routes
-  resources  :products, only: [:index, :show]
+
+  #js admin routes
+  get '/admin_sub_category_update/:id', to: 'admin/dashboard#sub_category_update'
+  #----end admin routes
+  
+  #category, subcategory, products routes
+  get '/categories', to: 'categories#index', as: 'categories'
+  get '/:category', to: 'categories#show',constraints: {category: /#{Category.all.map{|c|c.alias}.join('|')}/ }, as: 'category'
+  get '/:category/:subcategory', to: 'subcategories#show', constraints: {category: /#{Category.all.map{|c|c.alias}.join('|')}/, subcategory: /#{Subcategory.all.map{|c|c.alias}.join('|')}/}, as: 'subcategory'
+  get '/:category/:subcategory/:product', to: 'products#show', constraints: {category: /#{Category.all.map{|c|c.alias}.join('|')}/, subcategory: /#{Subcategory.all.map{|c|c.alias}.join('|')}/, product: /#{Product.all.map{|c|c.alias}.join('|')}/}, as: 'product'
 end

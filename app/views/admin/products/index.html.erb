@@ -2,10 +2,11 @@
 	<div class="col-xs-12">
 	Все товары:
 	<table class="table table-bordered table-hover">
-		<tr><th>Название</th><th>Цена</th><th></th></tr>
+		<tr><th>Название</th><th>Alias</th><th>Цена</th><th></th></tr>
 		<% @products.each do |product|%>
 		<tr>
 			<td><%= link_to product.name, admin_product_path(product)%></td>
+			<td><%= product.alias%></td>
 			<td><%= product.price%></td>
 			<td class="col-xs-3"><%= link_to 'Просмотр', admin_product_path(product), :class => "btn btn-sm btn-info" %>
 			<%= link_to 'Редактировать', edit_admin_product_path(product), :class => "btn btn-sm btn-success"%>

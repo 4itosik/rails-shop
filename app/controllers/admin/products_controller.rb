@@ -58,6 +58,6 @@ class Admin::ProductsController < ApplicationController
 
 	private
 	  def person_params
-	    params.require(:product).permit(:name, :price, :body)
+	    params.require(:product).permit(:name, :price, :body, :alias, :subcategory_id)
 	  end
 end

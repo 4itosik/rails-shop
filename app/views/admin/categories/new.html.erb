@@ -1,0 +1,35 @@
+<div class="col-xs-12">
+Создать категорию:
+	<%= form_for @category, url: admin_categories_path, html: { class: "form-horizontal" }  do |f|%>
+    <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "ошибки") %> при создание категории:</h2>
+      <ul>
+      <% @category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
+		<div class="form-group">
+      <label class="col-lg-2 control-label">Название</label>
+      <div class="col-lg-5">
+        <%= f.text_field :name, :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Алиас</label>
+      <div class="col-lg-5">
+        <%= f.text_field :alias, :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-5">  
+        <%= f.submit "Создать категорию", :class=>"btn btn-success"  %>
+      </div>
+    </div>
+	<%end%>
+</div>
+<div class="row">
+	<%= link_to 'Назад', admin_categories_path%>
+</div>

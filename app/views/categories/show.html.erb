@@ -1,0 +1,19 @@
+<div class="row">
+	<%= link_to 'Все подкатегории', root_url%> / <%= @category.name%>
+</div>
+<div class="row">
+<% howelementsinrow = 0%>
+<% @subcategories.each do |subcategory|%>
+	<div class="col-lg-4">
+		<%= subcategory.name%><br>
+		<%= link_to subcategory.alias, subcategory_path(:category => @category.alias, :subcategory => subcategory.alias)%>
+	</div>
+	<% howelementsinrow += 1%>
+	<% if howelementsinrow == 3 && @subcategories.last != subcategory%>
+</div>
+<br>
+<div class="row">
+	<% howelementsinrow = 0%>
+	<%end%>
+<%end%>
+</div>

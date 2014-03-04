@@ -1,0 +1,10 @@
+<div class="row">
+	<div class="col-lg-12">
+		Категория: <%= @subcategory.category.name%><br>
+		Название: <%= @subcategory.name%><br>
+		Alias: <%= @subcategory.alias%><br>
+	</div>
+</div>
+<div class="row">
+	<%= link_to 'Назад', admin_subcategories_path%>
+</div>

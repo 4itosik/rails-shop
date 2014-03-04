@@ -1,8 +1,9 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :category do
+  factory :subcategory do
   	name "test category"
   	sequence(:alias) { |i| "alias#{i}"}
+  	category 1
   end
 end
