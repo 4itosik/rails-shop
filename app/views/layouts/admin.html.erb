@@ -25,6 +25,7 @@
 	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	    <ul class="nav navbar-nav">
         <li><%= link_to 'Главная', admin_dashboard_index_path%></li>
+        <li><%= link_to 'Товары', admin_products_path%></li>
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right">
 	    	<li><%= link_to "Sign out", destroy_administrator_session_path, :method => :delete %></li>
