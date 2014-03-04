@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Admin::ProductsController do
 
 
-#	describe "action show " do 
+	describe "action show " do 
 #		it "renderis show templates" do
 #			category = create(:category)
 #			subcategory = create(:subcategory, category_id: category.id) 
