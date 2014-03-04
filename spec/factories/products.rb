@@ -5,7 +5,8 @@ FactoryGirl.define do
   	name "name"
   	body "body"
   	sequence(:alias) { |i| "alias#{i}"}
-  	subcategory 1
+  	subcategory_id 100
+  	subcategory
   	price 1
   end
 end
