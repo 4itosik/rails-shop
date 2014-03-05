@@ -6,6 +6,7 @@ class Product < ActiveRecord::Base
   validates		:price,  :numericality => {:greater_than => 0}
   belongs_to	:subcategory
   validates 	:subcategory, :presence => true
+  has_many    :cart_products, dependent: :destroy
   private
   	def reload_routes
   		RailsShop::Application.reload_routes!

@@ -8,6 +8,11 @@
 		  <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 		    <span itemprop="price"><%= @product.price%></span>
 		  </div>
+		  <%= form_for CartProduct.new, url: add_to_cart_path, remote: true do |f|%>
+		  	<%= f.hidden_field :product_id, :value => @product.id%>
+		  	<%= f.text_field :quantity, :class => "form-control", :value => 1%>
+		  	<%= f.submit "Купить", :class=>"btn btn-success"  %>
+		  <% end %>
 		  Описания товара:
 		  <span itemprop="description">
 		  	<%= @product.body%>

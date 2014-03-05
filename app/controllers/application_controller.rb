@@ -8,6 +8,14 @@ class ApplicationController < ActionController::Base
 	    admin_dashboard_index_path
 	  end
   end
+
+  def current_cart
+    Cart.find(session[:cart_id])
+  rescue ActiveRecord::RecordNotFound
+    cart = Cart.create
+    session[:cart_id] = cart.id
+    cart
+  end
 private
 	  def layout_by_resource
     	if devise_controller?

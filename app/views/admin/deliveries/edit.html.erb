@@ -1,0 +1,42 @@
+<div class="col-xs-12">
+Редактировать тоставку <%= @delivery.title%>:
+	<%= form_for @delivery, url: admin_delivery_path, html: { class: "form-horizontal" }   do |f|%>
+		<%= f.hidden_field :id%>
+    <% if @delivery.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@delivery.errors.count, "ошибки") %> при создание доставки:</h2>
+      <ul>
+      <% @delivery.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Название</label>
+      <div class="col-lg-5">
+        <%= f.text_field :title, :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Цена</label>
+      <div class="col-lg-5">
+        <%= f.text_field :price, :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Цена за 1 км</label>
+      <div class="col-lg-5">
+        <%= f.text_field :price_km, :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-5">  
+        <%= f.submit "Редактировать доставку #{@delivery.title}", :class=>"btn btn-success"  %>
+      </div>
+    </div>
+	<%end%>
+</div>
+<div class="row">
+	<%= link_to 'Назад', admin_categories_path%>
+</div>

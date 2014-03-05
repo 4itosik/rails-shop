@@ -23,4 +23,7 @@ RailsShop::Application.routes.draw do
   get '/:category', to: 'categories#show',constraints: {category: /#{Category.all.map{|c|c.alias}.join('|')}/ }, as: 'category'
   get '/:category/:subcategory', to: 'subcategories#show', constraints: {category: /#{Category.all.map{|c|c.alias}.join('|')}/, subcategory: /#{Subcategory.all.map{|c|c.alias}.join('|')}/}, as: 'subcategory'
   get '/:category/:subcategory/:product', to: 'products#show', constraints: {category: /#{Category.all.map{|c|c.alias}.join('|')}/, subcategory: /#{Subcategory.all.map{|c|c.alias}.join('|')}/, product: /#{Product.all.map{|c|c.alias}.join('|')}/}, as: 'product'
+
+  #carts rourtes
+  post '/add_to_cart/', to: 'carts#add_to_cart', as: 'add_to_cart'
 end

@@ -1,0 +1,41 @@
+<div class="col-xs-12">
+Создать тип доставки:
+	<%= form_for @delivery, url: admin_deliveries_path, html: { class: "form-horizontal" }  do |f|%>
+    <% if @delivery.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@delivery.errors.count, "ошибки") %> при создание доставки:</h2>
+      <ul>
+      <% @delivery.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
+		<div class="form-group">
+      <label class="col-lg-2 control-label">Название</label>
+      <div class="col-lg-5">
+        <%= f.text_field :title, :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Цена</label>
+      <div class="col-lg-5">
+        <%= f.text_field :price, :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Цена за 1 км</label>
+      <div class="col-lg-5">
+        <%= f.text_field :price_km, :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-5">  
+        <%= f.submit "Создать категорию", :class=>"btn btn-success"  %>
+      </div>
+    </div>
+	<%end%>
+</div>
+<div class="row">
+	<%= link_to 'Назад', admin_deliveries_path%>
+</div>

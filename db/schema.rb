@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140304095308) do
+ActiveRecord::Schema.define(:version => 20140305084712) do
 
   create_table "administrators", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -31,11 +31,45 @@ ActiveRecord::Schema.define(:version => 20140304095308) do
   add_index "administrators", ["email"], :name => "index_administrators_on_email", :unique => true
   add_index "administrators", ["reset_password_token"], :name => "index_administrators_on_reset_password_token", :unique => true
 
+  create_table "cart_products", :force => true do |t|
+    t.integer  "cart_id"
+    t.integer  "order_id"
+    t.integer  "product_id"
+    t.integer  "quantity",   :default => 0
+    t.integer  "total"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "carts", :force => true do |t|
+    t.integer  "total",      :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.string   "alias"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "deliveries", :force => true do |t|
+    t.string   "title"
+    t.integer  "price"
+    t.integer  "price_km"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "orders", :force => true do |t|
+    t.string   "name"
+    t.integer  "product_price"
+    t.integer  "delivery_price"
+    t.integer  "total"
+    t.integer  "delivery_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "products", :force => true do |t|

@@ -1,0 +1,23 @@
+<div class="row">
+	<div class="col-xs-12">
+	Все категории:
+	<table class="table table-bordered table-hover">
+		<tr><th>Название</th><th>Цена</th><th></th></tr>
+		<% @deliveries.each do |delivery|%>
+		<tr>
+			<td><%= link_to delivery.title, admin_delivery_path(delivery)%></td>
+			<td><%= delivery.price%></td>
+			<td class="col-xs-3"><%= link_to 'Просмотр', admin_delivery_path(delivery), :class => "btn btn-sm btn-info" %>
+			<%= link_to 'Редактировать', edit_admin_delivery_path(delivery), :class => "btn btn-sm btn-success"%>
+			<%= link_to 'Удалить', admin_delivery_path(delivery), :method=>:delete, :class=>:destroy, :class => "btn btn-sm btn-danger"%></td>
+		</tr>
+		<%end%>	
+	</table>
+	</div>
+</div>
+<div class="row">
+<center><%= will_paginate @deliveries, :class => "apple_pagination", :previous_label => t("<<Предыдущая страница"), :next_label => t("Следующая страница>>") %></center>
+</div>
+<div class="row">
+	<%= link_to 'Создать', new_admin_delivery_path%>
+</div>
