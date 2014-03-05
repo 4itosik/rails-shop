@@ -1,5 +1,4 @@
 class CartsController < ApplicationController
-
 	def add_to_cart
 		@cart = current_cart
 		@cart_product = CartProduct.new(cart_product_params)
