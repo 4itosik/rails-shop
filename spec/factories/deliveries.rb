@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :delivery do
+  	title "test delivery"
+  	price 100
   end
 end

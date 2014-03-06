@@ -1,0 +1,22 @@
+<div class="row">
+	<% if @cart_products.empty?%>
+		Ваша коризна пуста
+	<%else%>
+		<div class="col-xs-12">
+		<table class="table table-bordered table-hover">
+			<tr><th>Название</th><th>Цена</th><th>Количество</th><th>Стоимость</th></tr>
+			<% @cart_products.each do |cart_product|%>
+			<tr>
+				<td><%= cart_product.product.name%></td>
+				<td><%= cart_product.product.price%></td>
+				<td><%= cart_product.quantity%></td>
+				<td><%= cart_product.total%></td>
+			</tr>
+			<%end%>
+			<tr>
+				<td></td><td></td><td>Итого:</td><td><%= @cart.total%></td>
+			</tr>	
+		</table>
+		</div>
+	<%end%>
+</div>

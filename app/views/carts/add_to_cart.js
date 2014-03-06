@@ -1,0 +1,1 @@
+$('#total').html('<%= escape_javascript(render("carts/cart_price_total")) %>');  

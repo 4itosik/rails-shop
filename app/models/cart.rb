@@ -1,8 +1,7 @@
 class Cart < ActiveRecord::Base
-  # attr_accessible :title, :body
+  #attr_accessible :total
   has_many	:cart_products, dependent: :destroy
-  private
-  	def total
-  		self.update_attributes(:total => self.cart_products.map(&:total).inject(:+)
-  	end
+  def price_total
+  	self.update_attributes(:total => self.cart_products.map(&:total).inject(:+))
+  end
 end

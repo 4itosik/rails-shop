@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :order do
+  	name "test name"
   end
 end

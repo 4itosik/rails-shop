@@ -1,12 +1,17 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   layout :layout_by_resource
+  before_filter :cart
   def after_sign_in_path_for(administrator)
     if administrator.email != "admin@admin.ru" 
       root_path
     else
 	    admin_dashboard_index_path
 	  end
+  end
+
+  def cart
+    @cart = current_cart
   end
 
   def current_cart
