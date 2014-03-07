@@ -40,7 +40,7 @@ end
 # To use debugger
 # gem 'debugger'
 gem 'json'
-#gem 'therubyracer'
+gem 'therubyracer'
 gem 'roo'
 gem 'mechanize'
 gem 'will_paginate', '~> 3.0'
