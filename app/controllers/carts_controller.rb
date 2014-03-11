@@ -17,6 +17,17 @@ class CartsController < ApplicationController
 		@cart.price_total
 	end
 
+	def update_qty
+		@cart_product = CartProduct.find(params[:cart_product_id])
+		@cart_product.update_quantity(params[:quantity].to_i)
+		@cart_product.save
+		@cart.price_total
+		data = Array.new
+		data = [@cart_product.total, @cart.total]
+		respond_to do |format|
+		  format.json  { render :json => data } 
+		end
+	end
 
 	def index
 		@cart_products = @cart.cart_products

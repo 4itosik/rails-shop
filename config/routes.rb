@@ -27,4 +27,5 @@ RailsShop::Application.routes.draw do
   #carts rourtes
   post '/add_to_cart/', to: 'carts#add_to_cart', as: 'add_to_cart'
   get '/carts', to: 'carts#index', as: 'carts'
+  post '/carts/update_qty', to: 'carts#update_qty', as: 'update_qty'
 end

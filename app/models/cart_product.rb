@@ -7,6 +7,11 @@ class CartProduct < ActiveRecord::Base
   def add_qty(new_qty)
   	self.quantity += new_qty
   end
+
+  def update_quantity(new_qty)
+    self.quantity = new_qty
+  end
+  
   private
   	def update_total
   		self.total = self.product.price * self.quantity
