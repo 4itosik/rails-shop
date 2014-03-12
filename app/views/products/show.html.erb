@@ -30,8 +30,42 @@
 		</div>
 	</div>
 </div>
+<% unless @comments.empty?%>
+  <div class="row">
+    Отзывы на товар:
+    <% @comments.each do |comment|%>
+      <div class="well">
+        <%= comment.name%><br>
+        <%= comment.body%>
+      </div>
+    <%end%>
+  </div>
+<%end%>
+<div class="row" id="comment">
+  Написать отзыв к товару:
+  <%= form_for @comment,remote: true, html: { class: "form-horizontal" }  do |f|%>
+    <%= f.hidden_field :product_id, :value => @product.id%>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Представтесь</label>
+      <div class="col-lg-5">
+        <%= f.text_field :name, :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Отзыв о товаре</label>
+      <div class="col-lg-5">
+        <%= f.text_area :body, :size => '70x5', :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-5">  
+        <%= f.submit "Создать товар", :class=>"btn btn-success"  %>
+      </div>
+    </div>
+  <%end%>
+</div>
 <script type="text/javascript">
-$('form').submit( function () {
+$('form:first').submit( function () {
         var cart = $('.cart');
         var imgtodrag = $('.imag').eq(0);
         if (imgtodrag) {

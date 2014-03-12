@@ -7,6 +7,7 @@ class Product < ActiveRecord::Base
   belongs_to	:subcategory
   validates 	:subcategory, :presence => true
   has_many    :cart_products, dependent: :destroy
+  has_many    :comments, as: :commentable, dependent: :destroy
   private
   	def reload_routes
   		RailsShop::Application.reload_routes!
