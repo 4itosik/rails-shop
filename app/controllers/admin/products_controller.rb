@@ -15,8 +15,9 @@ class Admin::ProductsController < ApplicationController
 	end
 
 	def destroy
-		product = Product.find(params[:id])
-		if product == nil
+		begin
+			product = Product.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
 			render :file => 'public/404.html', :status => :not_found, :layout => false
 		else
 			product.destroy

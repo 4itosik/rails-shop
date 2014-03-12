@@ -15,8 +15,9 @@ class Admin::SubcategoriesController < ApplicationController
 	end
 
 	def destroy
-		subcategory = Subcategory.find(params[:id])
-		if subcategory == nil
+		begin
+			subcategory = Subcategory.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
 			render :file => 'public/404.html', :status => :not_found, :layout => false
 		else
 			subcategory.destroy

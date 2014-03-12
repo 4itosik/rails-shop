@@ -16,8 +16,9 @@ class Admin::CategoriesController < ApplicationController
 	end
 
 	def destroy
-		category = Category.find(params[:id])
-		if category == nil
+		begin
+			category = Category.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
 			render :file => 'public/404.html', :status => :not_found, :layout => false
 		else
 			category.destroy

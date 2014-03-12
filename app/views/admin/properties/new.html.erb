@@ -1,0 +1,41 @@
+<div class="col-xs-12">
+Создать свойство:
+	<%= form_for @property, url: admin_properties_path, html: { class: "form-horizontal" }  do |f|%>
+		<div class="form-group">
+      <label class="col-lg-2 control-label">Название</label>
+      <div class="col-lg-5">
+        <%= f.text_field :title, :class => "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-5">
+        <div class="checkbox">
+          <label>Использовать в сортировке?
+            <%= f.check_box :sort %>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-5">
+      Свойства для подкатегорий: 
+        <% Subcategory.all.each do |subcat| %>
+          <div class="checkbox">
+            <label>
+              <%= check_box_tag "property[subcategory_ids][]", subcat.id, @property.subcategories.include?(subcat.id)%>
+              <%= subcat.name%>
+            </label>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-5">  
+        <%= f.submit "Создать свойство", :class=>"btn btn-success"  %>
+      </div>
+    </div>
+	<%end%>
+</div>
+<div class="row">
+	<%= link_to 'Назад', admin_properties_path%>
+</div>

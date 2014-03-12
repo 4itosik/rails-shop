@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140312073314) do
+ActiveRecord::Schema.define(:version => 20140312092422) do
 
   create_table "administrators", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -91,10 +91,30 @@ ActiveRecord::Schema.define(:version => 20140312073314) do
     t.datetime "updated_at",     :null => false
   end
 
+  create_table "properties", :force => true do |t|
+    t.string   "title"
+    t.boolean  "sort",       :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "properties_subcategories", :id => false, :force => true do |t|
+    t.integer "property_id"
+    t.integer "subcategory_id"
+  end
+
   create_table "subcategories", :force => true do |t|
     t.string   "name"
     t.string   "alias"
     t.integer  "category_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "value_property_products", :force => true do |t|
+    t.string   "value"
+    t.integer  "property_id"
+    t.integer  "product_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

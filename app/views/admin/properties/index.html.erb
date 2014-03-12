@@ -1,0 +1,29 @@
+<div class="row">
+	<div class="col-xs-12">
+	Все свойства:
+	<table class="table table-bordered table-hover">
+		<tr><th>Название</th><th>Использ. в сортировке?</th><th></th></tr>
+		<% @properties.each do |property|%>
+		<tr>
+			<td><%= link_to property.title, admin_property_path(property)%></td>
+			<td>
+				<% if property.sort == true%>
+					+
+				<%else%>
+					-
+				<%end%>
+			</td>
+			<td class="col-xs-3"><%= link_to 'Просмотр', admin_property_path(property), :class => "btn btn-sm btn-info" %>
+			<%= link_to 'Редактировать', edit_admin_property_path(property), :class => "btn btn-sm btn-success"%>
+			<%= link_to 'Удалить', admin_property_path(property), :method=>:delete, :class=>:destroy, :class => "btn btn-sm btn-danger"%></td>
+		</tr>
+		<%end%>	
+	</table>
+	</div>
+</div>
+<div class="row">
+<center><%= will_paginate @properties, :class => "apple_pagination", :previous_label => t("<<Предыдущая страница"), :next_label => t("Следующая страница>>") %></center>
+</div>
+<div class="row">
+	<%= link_to 'Создать', new_admin_property_path%>
+</div>

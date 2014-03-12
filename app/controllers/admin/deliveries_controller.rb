@@ -15,8 +15,9 @@ class Admin::DeliveriesController < ApplicationController
 	end
 
 	def destroy
-		delivery = Delivery.find(params[:id])
-		if delivery == nil
+		begin
+			delivery = Delivery.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
 			render :file => 'public/404.html', :status => :not_found, :layout => false
 		else
 			delivery.destroy

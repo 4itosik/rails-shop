@@ -1,0 +1,13 @@
+<div class="row">
+	<div class="col-lg-12">
+		Название: <%= @property.title %><br>
+		Используеться ли в сортировке?: <% if @property.sort == true%> + <%else%> - <%end%><br>
+		Применяеться в подкатегориях:<br>
+			<% @subcategories.each do |subcategory|%>
+				<%= subcategory.name%><br>
+			<%end%>
+	</div>
+</div>
+<div class="row">
+	<%= link_to 'Назад', admin_properties_path%>
+</div>
