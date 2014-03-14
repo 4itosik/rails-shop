@@ -10,7 +10,10 @@ RailsShop::Application.routes.draw do
   #admin routes
   namespace :admin do
     resources  :dashboard, only: [:index]
-    resources  :categories, :subcategories, :products, :deliveries, :properties
+    resources  :categories, :subcategories, :deliveries, :properties
+    resources  :products do
+      post 'search', on: :collection
+    end
   end
 
 
