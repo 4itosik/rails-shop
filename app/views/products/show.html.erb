@@ -28,8 +28,19 @@
 		  	<%= @product.body%>
 		  </span>
 		</div>
+    <%unless @value_property_products.empty?%>
+    <div class="row">
+      Характеристики<br>
+      <% @value_property_products.each do |value_property_product|%>
+        <% if value_property_product.property.subcategories.map(&:id).include?(@subcategory.id)%>
+          <%= value_property_product.property.title%> - <%= value_property_product.value%><br>
+        <%end%>
+      <%end%>
+    </div>
+    <%end%>
 	</div>
 </div>
+
 <% unless @comments.empty?%>
   <div class="row">
     Отзывы на товар:

@@ -36,6 +36,10 @@ class Admin::ProductsController < ApplicationController
 	def update
     @product = Product.find(params[:id])
     if @product.update_attributes (person_params)
+    	if params[:product][:value_property_products]
+    		value_property_products = params[:product][:value_property_products]
+    		@product.update_property(value_property_products)
+    	end
     	flash[:notice] = "Successfully update product: #{@product.name}" 
     	redirect_to admin_products_path
     else
@@ -59,6 +63,6 @@ class Admin::ProductsController < ApplicationController
 
 	private
 	  def person_params
-	    params.require(:product).permit(:name, :price, :body, :alias, :subcategory_id)
+	    params.require(:product).permit(:name, :price, :body, :alias, :subcategory_id, :value_property_products => [])
 	  end
 end
