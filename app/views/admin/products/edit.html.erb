@@ -102,17 +102,23 @@ $(document).ready(function(){
 
 
 <script type="text/javascript">
-  $("select#category").change(function(){
+  $("select#product_subcategory_id").change(function(){
     var id_value_string = $(this).val();
+    var product_id = $("#product_id").val()
     if (id_value_string == "") {  
     }
     else{
+      obj = {
+        id: id_value_string,
+        product_id: product_id
+      }
       $.ajax({
-        dataType: "json",
-        cache: false,
-        url: '/admin_property_update/' + id_value_string,
-        timeout: 2000  
+        type : 'GET',
+        url: /admin_property_update/,
+        data: obj,
+        dataType : 'script'
       });
     }
+    return false;  
   });
 </script>

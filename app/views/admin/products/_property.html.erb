@@ -1,12 +1,19 @@
+        <% unless @properties.empty?%>   
           <% @properties.each do |property|%>
             <div class="form-group">
               <label class="col-lg-3 control-label"><%= property.title%></label>
               <div class="col-lg-9">
-                <% if property.value_property_product == nil%>
+                <% if @product == nil %>
                   <%= text_field_tag "product[value_property_products][#{property.id}]", nil, class: "form-control" %>
                 <% else%>
-                  <%= text_field_tag "product[value_property_products][#{property.id}]", property.value_property_product.value, class: "form-control" %>
+                  <% value_property_product = ValuePropertyProduct.where( :property_id => property.id, :product_id => @product.id).first%>
+                  <% if value_property_product == nil%>
+                    <%= text_field_tag "product[value_property_products][#{property.id}]", nil, class: "form-control" %>
+                  <% else%>
+                    <%= text_field_tag "product[value_property_products][#{property.id}]", value_property_product.value, class: "form-control" %>
+                  <%end%>
                 <%end%>
               </div>
             </div>
           <%end%>
+        <%end%>

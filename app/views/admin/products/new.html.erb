@@ -60,12 +60,8 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-6">
-        <% unless @properties.empty?%>        
-          <div id="property">
-            <%= render("admin/products/property")%>
-          </div>
-        <%end%>
+      <div class="col-lg-6" id="property">
+        <%= render("admin/products/property")%>
       </div>
     </div>
 	<%end%>
@@ -106,12 +102,18 @@ $(document).ready(function(){
 <script type="text/javascript">
   $("select#product_subcategory_id").change(function(){
     var id_value_string = $(this).val();
+    var product_id = $("#product_id").val()
     if (id_value_string == "") {  
     }
     else{
+      obj = {
+        id: id_value_string,
+        product_id: product_id
+      }
       $.ajax({
         type : 'GET',
-        url: /admin_property_update/ + id_value_string,
+        url: /admin_property_update/,
+        data: obj,
         dataType : 'script'
       });
     }

@@ -50,6 +50,10 @@ class Admin::ProductsController < ApplicationController
 	def create
   	@product = Product.new
   	if @product.update_attributes (person_params)
+  		if params[:product][:value_property_products]
+    		value_property_products = params[:product][:value_property_products]
+    		@product.update_property(value_property_products)
+    	end
     	flash[:notice] = "Successfully created product: #{@product.name}"
     	redirect_to admin_products_path
   	else

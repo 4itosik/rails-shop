@@ -14,7 +14,13 @@ class Admin::DashboardController < ApplicationController
 	end
 
 	def admin_property_update
-		subcategory = Subcategory.find(params[:id])
-		@properties = subcategory.properties 
+		if params[:product_id] == nil
+			@product = nil
+		else
+			@product = Product.find(params[:product_id])
+		end
+			subcategory = Subcategory.find(params[:id])
+			@properties = subcategory.properties 
+
 	end
 end

@@ -10,7 +10,7 @@
 		<%= link_to product.alias, product_path(:category => @category.alias, :subcategory => @subcategory.alias, :product => product.alias)%>
 	</div>
 	<% howelementsinrow += 1%>
-	<% if howelementsinrow == 3 && @subcategories.last != subcategory%>
+	<% if howelementsinrow == 3 && @products.last != product%>
 </div>
 <br>
 <div class="row">
