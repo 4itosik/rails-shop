@@ -1,0 +1,12 @@
+          <% @properties.each do |property|%>
+            <div class="form-group">
+              <label class="col-lg-3 control-label"><%= property.title%></label>
+              <div class="col-lg-9">
+                <% if property.value_property_product == nil%>
+                  <%= text_field_tag "product[value_property_products][#{property.id}]", nil, class: "form-control" %>
+                <% else%>
+                  <%= text_field_tag "product[value_property_products][#{property.id}]", property.value_property_product.value, class: "form-control" %>
+                <%end%>
+              </div>
+            </div>
+          <%end%>

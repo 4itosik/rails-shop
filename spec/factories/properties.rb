@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :property do
+  	title 	"test title"
   end
 end

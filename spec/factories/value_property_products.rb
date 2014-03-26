@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :value_property_product do
+  	value 	"test value"
   end
 end

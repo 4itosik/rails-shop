@@ -2,6 +2,11 @@
 Редактировать товар <%= @product.name%>:
 	<%= form_for @product, url: admin_product_path, html: { class: "form-horizontal" }   do |f|%>
 		<%= f.hidden_field :id%>
+    <% if @product.subcategory == nil%>
+      <% @properties = Array.new%>
+    <%else%>
+      <% @properties = @product.subcategory.properties %>  
+    <%end%>
     <% if @product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@product.errors.count, "ошибки") %> при создание товара:</h2>
@@ -12,7 +17,7 @@
       </ul>
     </div>
     <% end %>
-    <dvi class="row">
+    <div class="row">
       <div class="col-lg-6">
         <div class="form-group">
           <label class="col-lg-3 control-label">Название</label>
@@ -56,24 +61,10 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-6">
-        <% properties = @product.subcategory.properties %>
-        <% unless properties.empty?%>
-          <% properties.each do |property|%>
-            <div class="form-group">
-              <label class="col-lg-3 control-label"><%= property.title%></label>
-              <div class="col-lg-9">
-                <% if property.value_property_product == nil%>
-                  <%= text_field_tag "product[value_property_products][#{property.id}]", nil, class: "form-control" %>
-                <% else%>
-                  <%= text_field_tag "product[value_property_products][#{property.id}]", property.value_property_product.value, class: "form-control" %>
-                <%end%>
-              </div>
-            </div>
-          <%end%>
-        <% end%>
+      <div class="col-lg-6" id="property">
+        <%= render("admin/products/property")%>
       </div>
-    </dvi>
+    </div>
 	<%end%>
 </div>
 <div class="row">
@@ -107,4 +98,21 @@ $(document).ready(function(){
     };
   });
 });
+</script>
+
+
+<script type="text/javascript">
+  $("select#category").change(function(){
+    var id_value_string = $(this).val();
+    if (id_value_string == "") {  
+    }
+    else{
+      $.ajax({
+        dataType: "json",
+        cache: false,
+        url: '/admin_property_update/' + id_value_string,
+        timeout: 2000  
+      });
+    }
+  });
 </script>

@@ -16,9 +16,9 @@ RailsShop::Application.routes.draw do
     end
   end
 
-
   #js admin routes
   get '/admin_sub_category_update/:id', to: 'admin/dashboard#sub_category_update'
+  get '/admin_property_update/:id', to: 'admin/dashboard#admin_property_update'
   #----end admin routes
   
   #category, subcategory, products routes

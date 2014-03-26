@@ -1,6 +1,11 @@
 <div class="col-xs-12">
 Создать товар:
 	<%= form_for @product, url: admin_products_path, html: { class: "form-horizontal" }  do |f|%>
+    <% if @product.subcategory == nil%>
+      <% @properties = Array.new%>
+    <%else%>
+      <% @properties = @product.subcategory.properties %>  
+    <%end%>
     <% if @product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@product.errors.count, "ошибки") %> при создание товара:</h2>
@@ -11,7 +16,7 @@
       </ul>
     </div>
     <% end %>
-    <dvi class="row">
+    <div class="row">
       <div class="col-lg-6">
     		<div class="form-group">
           <label class="col-lg-3 control-label">Название</label>
@@ -56,8 +61,13 @@
         </div>
       </div>
       <div class="col-lg-6">
+        <% unless @properties.empty?%>        
+          <div id="property">
+            <%= render("admin/products/property")%>
+          </div>
+        <%end%>
       </div>
-    </dvi>
+    </div>
 	<%end%>
 </div>
 <div class="row">
@@ -91,4 +101,20 @@ $(document).ready(function(){
     };
   });
 });
+</script>
+
+<script type="text/javascript">
+  $("select#product_subcategory_id").change(function(){
+    var id_value_string = $(this).val();
+    if (id_value_string == "") {  
+    }
+    else{
+      $.ajax({
+        type : 'GET',
+        url: /admin_property_update/ + id_value_string,
+        dataType : 'script'
+      });
+    }
+    return false;  
+  });
 </script>
