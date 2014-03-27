@@ -1,5 +1,5 @@
 class ValuePropertyProduct < ActiveRecord::Base
-  attr_accessible :value, :product_id, :property_id
-  belongs_to	:property
-  belongs_to	:product
+  attr_accessible :value, :property_id
+  belongs_to								:property
+  has_and_belongs_to_many		:products
 end

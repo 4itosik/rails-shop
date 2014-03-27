@@ -6,7 +6,8 @@
                 <% if @product == nil %>
                   <%= text_field_tag "product[value_property_products][#{property.id}]", nil, class: "form-control" %>
                 <% else%>
-                  <% value_property_product = ValuePropertyProduct.where( :property_id => property.id, :product_id => @product.id).first%>
+                  <% value_property_products = @product.value_property_products%>
+                  <% value_property_product = value_property_products.where(:property_id => property.id).first%>
                   <% if value_property_product == nil%>
                     <%= text_field_tag "product[value_property_products][#{property.id}]", nil, class: "form-control" %>
                   <% else%>
